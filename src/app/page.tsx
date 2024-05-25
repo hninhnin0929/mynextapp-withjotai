@@ -1,4 +1,5 @@
-import Image from "next/image";
+
+import { atom, useAtom } from 'jotai';
 
 export default function Home() {
   return (
