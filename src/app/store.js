@@ -38,3 +38,18 @@ export const handleMouseMoveAtom = atom (
         }
     }
 );
+// read write atoms
+const count = atom(1);
+export const readWriteAtom = atom((get) => get(count),
+(get, set) => {
+    set(count, get(count) + 1);
+},
+);
+export const handleMouseMoveAtom1 = atom (
+    (get) => get(dotsAtom),
+    (get, set, update) => {
+        if(get(drawingAtom)) {
+            set(dotsAtom, (prev) => [...prev, update]);
+        }
+    }
+);
