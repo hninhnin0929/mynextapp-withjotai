@@ -1,5 +1,5 @@
 // store.js
-import { atom } from 'jotai';
+import { atom, useAtom } from 'jotai';
 import { atomWithStorage } from 'jotai/utils';
 
 export const countAtom = atom(0);
@@ -64,3 +64,6 @@ const createCountIncAtoms = (initialValue) => {
 export const [fooAtom, fooIncAtom] = createCountIncAtoms(0);
 export const [barAtom, barIncAtom] = createCountIncAtoms(0);
 
+// Async Read Atoms
+export const counter1 = atom(1);
+export const asyncAtom = atom(async (get) => get(counter1) * 50);
