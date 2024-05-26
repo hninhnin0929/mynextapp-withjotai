@@ -1,6 +1,6 @@
 // store.js
 import { atom, useAtom } from 'jotai';
-import { atomWithStorage } from 'jotai/utils';
+import { atomWithReset, atomWithStorage } from 'jotai/utils';
 
 export const countAtom = atom(0);
 
@@ -73,3 +73,6 @@ export const asyncWriteAtom = atom(null, async (get, set) => {
     await fetch('http://jsonplaceholder.typicode.com/todos/');
     set(counter1, get(counter1) + 1);
 });
+
+// Atom with Reset
+export const resetCounter = atomWithReset(1);
