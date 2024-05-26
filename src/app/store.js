@@ -67,3 +67,9 @@ export const [barAtom, barIncAtom] = createCountIncAtoms(0);
 // Async Read Atoms
 export const counter1 = atom(1);
 export const asyncAtom = atom(async (get) => get(counter1) * 50);
+
+// Async Write Atoms
+export const asyncWriteAtom = atom(null, async (get, set) => {
+    await fetch('http://jsonplaceholder.typicode.com/todos/');
+    set(counter1, get(counter1) + 1);
+});
