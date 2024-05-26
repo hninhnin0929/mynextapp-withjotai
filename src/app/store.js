@@ -1,6 +1,7 @@
 // store.js
 import { atom, useAtom } from 'jotai';
-import { atomWithReset, atomWithStorage } from 'jotai/utils';
+import { atomWithReset, atomWithStorage, selectAtom } from 'jotai/utils';
+import { isEqual } from 'lodash-es';
 
 export const countAtom = atom(0);
 
@@ -76,3 +77,29 @@ export const asyncWriteAtom = atom(null, async (get, set) => {
 
 // Atom with Reset
 export const resetCounter = atomWithReset(1);
+
+const defaultPerson = {
+    name: {
+      first: "Jane",
+      last: "Doe"
+    },
+    birth: {
+      year: 2000,
+      month: "Jan",
+      day: 1,
+      time: {
+        hour: 0,
+        minute: 0
+      }
+    }
+  };
+// Original atom.
+export const personAtom = atom(defaultPerson);
+// Tracks person.name. Updated when person.name object changes, even
+// if neither name.first nor name.last actually change.
+export const nameAtom = selectAtom(personAtom, (person) => person.name);
+// Tracks person.birth. Updated when year, month, day, hour, or minute changes.
+// Use of deepEquals means that this atom doesn't update if birth field is
+// replaced with a new object containing the same data. E.g., if person is re-read
+// from a database.
+export const birthAtom = selectAtom(personAtom, (person) => person.birth, isEqual);
