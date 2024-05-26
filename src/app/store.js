@@ -1,7 +1,9 @@
 // store.js
 import { atom, useAtom } from 'jotai';
+import { atomWithImmer } from 'jotai-immer';
 import { atomWithReset, atomWithStorage, selectAtom } from 'jotai/utils';
 import { isEqual } from 'lodash-es';
+import { title } from 'process';
 
 export const countAtom = atom(0);
 
@@ -103,3 +105,15 @@ export const nameAtom = selectAtom(personAtom, (person) => person.name);
 // replaced with a new object containing the same data. E.g., if person is re-read
 // from a database.
 export const birthAtom = selectAtom(personAtom, (person) => person.birth, isEqual);
+
+const todo = {
+    todo: {
+        person: {
+            name: "David",
+            title: {
+                goal: "old todo"
+            },
+        }
+    }
+};
+export const immerAtom = atomWithImmer(todo);
