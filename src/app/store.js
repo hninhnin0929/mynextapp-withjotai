@@ -53,3 +53,14 @@ export const handleMouseMoveAtom1 = atom (
         }
     }
 );
+const createCountIncAtoms = (initialValue) => {
+    const baseAtom = atom(initialValue)
+    const valueAtom = atom((get) => get(baseAtom))
+    const incAtom = atom(null, (get, set) => set(baseAtom, (c) => c + 1))
+    return [valueAtom, incAtom]
+  }
+
+// Create atoms for foo and bar counters
+export const [fooAtom, fooIncAtom] = createCountIncAtoms(0);
+export const [barAtom, barIncAtom] = createCountIncAtoms(0);
+
