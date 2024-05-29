@@ -21,7 +21,7 @@ body {
 }
 
 @layer utilities {
-  .btn {
+  /* .btn {
     @apply rounded-full;
-  }
+  } */
 }
