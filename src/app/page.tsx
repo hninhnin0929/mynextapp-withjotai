@@ -1,6 +1,7 @@
 "use client"
 import { atom, useAtom } from 'jotai';
 import { countAtom } from './store';
+import Navbar from '@/components/Navbar';
 
 export default function Home() {
   const [count, setCounter] = useAtom(countAtom);
@@ -12,6 +13,8 @@ export default function Home() {
         <button onClick={onClick} className='border-t-indigo-500 bg-blue-950 text-white'>
           Click
         </button>
+        <button className="btn btn-primary">Button</button>
+        <Navbar />
       </div>
     </main>
   );
