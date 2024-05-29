@@ -14,7 +14,6 @@ export default function Home() {
           Click
         </button>
         <button className="btn btn-primary">Button</button>
-        <Navbar />
       </div>
     </main>
   );
