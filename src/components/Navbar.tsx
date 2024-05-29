@@ -5,6 +5,7 @@ const links = [
   { href: '/drinks', label: 'drinks' },
   { href: '/prisma-example', label: 'prisma' },
   { href: '/tasks', label: 'tasks' },
+  { href: '/daisy-ui', label: 'daisy-ui' },
 ];
 
 const Navbar = () => {
